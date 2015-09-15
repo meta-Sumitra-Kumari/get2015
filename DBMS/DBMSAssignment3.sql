@@ -39,9 +39,9 @@ SELECT
     b.accession_no,
     bi.issue_dt,
     bi.due_dt,
-    TIMESTAMPDIFF(MONTH,
+    (TIMESTAMPDIFF(MONTH,
         br.issue_dt,
-        br.return_dt) AS months_duration
+        br.return_dt)>2)  AS months_duration
 FROM
     members m,
     titles t,
