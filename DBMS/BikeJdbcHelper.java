@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * @author Arushi ---class for creating ,inserting and deleting from bike table
+ * @author Sumitra ---class for creating ,inserting and deleting from bike table
  *
  */
 public class BikeJdbcHelper {
