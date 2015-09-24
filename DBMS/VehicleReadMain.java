@@ -11,7 +11,7 @@ public class VehicleReadMain {
 
 		// reading from XML
 		StaxParser objSaxParser = new StaxParser();
-		String filePath = "C:/Users/Sumitra/workspace/CaseStudy-2/src/vehicle.xml";
+		String filePath = "C:/Users/Sumitra/workspace/Vehicles/src/vehicle.xml";
 		List<Vehicle> readVehicleFromConfig = objSaxParser.readConfig(filePath);
 		System.out.println("reading value from file");
 		for (Vehicle objVehicle : readVehicleFromConfig) {
