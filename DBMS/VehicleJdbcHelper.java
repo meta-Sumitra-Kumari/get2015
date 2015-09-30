@@ -47,17 +47,7 @@ public class VehicleJdbcHelper {
 			e.printStackTrace();
 		} finally {
 			/* close connection */
-			try {
-				if (con != null) {
-					con.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll(con,stmt,null);
 		}
 		return bool;
 	}
@@ -114,16 +104,7 @@ public class VehicleJdbcHelper {
 			e.printStackTrace();
 		} finally {
 			/* close connection */
-			try {
-				if (con != null) {
-					con.close();
-				}
-				if (ps != null) {
-					ps.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll(con,null,ps);
 		}
 
 		return str;
@@ -134,6 +115,7 @@ public class VehicleJdbcHelper {
 	 * 
 	 * @throws VehicleManagementException
 	 */
+	@SuppressWarnings("resource")
 	public static void deleteAllVehicles() throws VehicleManagementException {
 
 		Connection con = null;
@@ -141,18 +123,31 @@ public class VehicleJdbcHelper {
 		ConnectionUtil conUtil = new ConnectionUtil();
 		/* creates connection to db */
 		con = conUtil.getConnection();
-
-		String query1 = "DELETE FROM Vehicle";
+		String query1 = "DROP TABLE Bike";
+		String query2 = "DROP TABLE Car";
+		String query3 = "DROP TABLE Vehicle";
 		try {
 			stmt = con.createStatement();
 			stmt.executeUpdate(query1);
+			stmt = con.createStatement();
+			stmt.executeUpdate(query2);
+			stmt = con.createStatement();
+			stmt.executeUpdate(query3);
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 
-		} finally {
-			/* close connection */
+		}
+		finally{
+			closeAll(con,stmt,null);
+		}
+		
+	}
+	static void closeAll(Connection con, Statement stmt,PreparedStatement ps)
+	{
+		 {
+				/* close connection */
 			try {
 				if (con != null) {
 					con.close();
@@ -160,12 +155,14 @@ public class VehicleJdbcHelper {
 				if (stmt != null) {
 					stmt.close();
 				}
+				if(ps!=null){
+					ps.close();
+				}
 
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
-
+			}
 	}
 
 }
