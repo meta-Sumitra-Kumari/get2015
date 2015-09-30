@@ -16,9 +16,12 @@ public class BikeJdbcHelper {
 	 * 
 	 * @throws VehicleManagementException
 	 */
+	 
+
+	
 	public static void createBikeTable() throws VehicleManagementException {
 		Connection con = null;
-		Statement stmt = null;
+		 Statement stmt = null;
 		ConnectionUtil conUtil = new ConnectionUtil();
 		/* creates connection to db */
 		con = conUtil.getConnection();
@@ -39,17 +42,7 @@ public class BikeJdbcHelper {
 			e.printStackTrace();
 		} finally {
 			/* close connection */
-			try {
-				if (con != null) {
-					con.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll(con,stmt,null,null);
 		}
 	}
 
@@ -66,7 +59,8 @@ public class BikeJdbcHelper {
 			throws VehicleManagementException {
 		int countBike = 0;
 		Connection con = null;
-		PreparedStatement ps = null;
+		 PreparedStatement ps = null;
+		
 		ConnectionUtil conUtil = new ConnectionUtil();
 		/* creates connection to db */
 		con = conUtil.getConnection();
@@ -84,16 +78,7 @@ public class BikeJdbcHelper {
 			e.printStackTrace();
 		} finally {
 			/* close connection */
-			try {
-				if (con != null) {
-					con.close();
-				}
-				if (ps != null) {
-					ps.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll(con,null,null,ps);
 		}
 		return countBike;
 	}
@@ -106,12 +91,14 @@ public class BikeJdbcHelper {
 	 *            ----vehicle id to delete
 	 * @throws VehicleManagementException
 	 */
+	@SuppressWarnings("resource")
 	public static void deleteBikeTable(int vehicleId)
 			throws VehicleManagementException {
-		String str = null;
+		
+		
 		Connection con = null;
-		Statement stmt = null;
-		ResultSet rs = null;
+		 Statement stmt = null;
+		 ResultSet rs = null;
 		ConnectionUtil conUtil = new ConnectionUtil();
 		/* creates connection to db */
 		con = conUtil.getConnection();
@@ -142,22 +129,29 @@ public class BikeJdbcHelper {
 			e.printStackTrace();
 		} finally {
 			/* close connection */
-			try {
-				if (con != null) {
-					con.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				}
-				if (rs != null) {
-					rs.close();
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			closeAll(con,stmt,rs,null);
 		}
 
+	}
+	static void closeAll(Connection con ,Statement stmt, ResultSet rs,PreparedStatement ps)
+	{
+		try {
+			if (con != null) {
+				con.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (rs != null) {
+				rs.close();
+			}
+			if(ps!=null){
+				ps.close();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
