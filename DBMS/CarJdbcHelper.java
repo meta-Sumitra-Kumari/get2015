@@ -1,168 +1,153 @@
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * @author Sumitra
- * 
- *         Class to creating ,inserting and deleting from vehicle table
- *
+ * @author Sumitra class for creating ,inserting and deleting from car table
  */
-public class VehicleJdbcHelper {
+public class CarJdbcHelper {
 
 	/**
-	 * ---Function to create vehicle table
+	 * Class to create car table
 	 * 
-	 * @param objVehicle
-	 * @return---created or not
 	 * @throws VehicleManagementException
 	 */
-	public static boolean createVehicleTable(Vehicle objVehicle)
-			throws VehicleManagementException {
-		boolean bool = false;
-		Connection con = null;
-		Statement stmt = null;
+	
+	
+	 
+	public static void createCarTable() throws VehicleManagementException {
+		 Connection con = null;
+		 Statement stmt = null;
 		ConnectionUtil conUtil = new ConnectionUtil();
 		/* creates connection to db */
 		con = conUtil.getConnection();
 
-		String query = "CREATE TABLE IF NOT EXISTS Vehicle" + "("
-				+ "vehicle_id INT AUTO_INCREMENT PRIMARY KEY, "
-				+ "make VARCHAR(20), " + "model VARCHAR(20), "
-				+ "engine_in_cc DOUBLE, " + "fuel_capacity DOUBLE,"
-				+ "milage DOUBLE," + "price DOUBLE," + "road_tax DOUBLE,"
-				+ "created_by VARCHAR(20),"
-				+ "created_time TIMESTAMP DEFAULT NOW()" + " )";
+		String query = "CREATE TABLE IF NOT EXISTS Car"
+				+ "("
+				+ "car_id INT AUTO_INCREMENT PRIMARY KEY,"
+				+ "ac tinyint(1),"
+				+ "power_steering tinyint(1),"
+				+ "accessory_kit tinyint(1),"
+				+ "vehicle_id INT,"
+				+ "CONSTRAINT `vehicle_key` FOREIGN KEY (vehicle_id) REFERENCES Vehicle (vehicle_id) ON DELETE CASCADE"
+				+ ")";
 		try {
 			stmt = con.createStatement();
-			bool = stmt.execute(query);
+			stmt.executeUpdate(query);
 
-			if (objVehicle instanceof Car)
-				CarJdbcHelper.createCarTable();
-			else if (objVehicle instanceof Bike)
-				BikeJdbcHelper.createBikeTable();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			/* close connection */
-			closeAll(con,stmt,null);
+			closeAll(con,stmt,null,null);
 		}
-		return bool;
 	}
 
 	/**
-	 * @param objVehicle
-	 * @return---whether inserted or not
+	 * 
+	 * ---Function to insert in table
+	 * 
+	 * @param objCar
+	 *            ----object of car type
+	 * @return----whether inserted or not
 	 * @throws VehicleManagementException
 	 */
-	public static String insertInVehicleTable(Vehicle objVehicle)
+	public static int insertInCarTable(Car objCar)
 			throws VehicleManagementException {
-		int countVehicle = 0, countCar = 0, countBike = 0;
-		String str = null;
-		Connection con = null;
-		PreparedStatement ps = null;
+		int countCar = 0;
+		 Connection con = null;
+		 PreparedStatement ps = null;
 		ConnectionUtil conUtil = new ConnectionUtil();
 		/* creates connection to db */
 		con = conUtil.getConnection();
 
-		String query = "INSERT INTO Vehicle (vehicle_id, make, model, engine_in_cc, fuel_capacity, milage, price, road_tax, created_by) VALUES (?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO Car ( ac, power_steering, accessory_kit, vehicle_id ) VALUES (?,?,?,?)";
 
 		try {
 			ps = (PreparedStatement) con.prepareStatement(query);
 			/* set variable in prepared statement */
-			ps.setInt(1, objVehicle.getVehicleId());
-			ps.setString(2, objVehicle.getMake());
-			ps.setString(3, objVehicle.getModel());
-			ps.setDouble(4, objVehicle.getEngineInCC());
-			ps.setDouble(5, objVehicle.getFuelCapacity());
-			ps.setDouble(6, objVehicle.getMilage());
-			ps.setDouble(7, objVehicle.getPrice());
-			ps.setDouble(8, objVehicle.getRoadTax());
-			ps.setString(9, objVehicle.getCreatedBy());
-			countVehicle = ps.executeUpdate();
-			if (countVehicle > 0) {
-				if (objVehicle instanceof Car) {
-					countCar = CarJdbcHelper
-							.insertInCarTable(((Car) objVehicle));
-					if (countCar > 0)
-						str = "Car created Successfully";
-					else
-						str = "Could not create Car";
-				} else if (objVehicle instanceof Bike) {
-					countBike = BikeJdbcHelper
-							.insertInBikeTable(((Bike) objVehicle));
-					if (countBike > 0)
-						str = "Bike created Successfully";
-					else
-						str = "Could not create Bike";
-				}
-			} else
-				str = "Could not create vehicle";
+			ps.setBoolean(1, objCar.isAC());
+			ps.setBoolean(2, objCar.isPowerSteering());
+			ps.setBoolean(3, objCar.isAccessoryKit());
+			ps.setInt(4, objCar.getVehicleId());
+			countCar = ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			/* close connection */
-			closeAll(con,null,ps);
+			closeAll(con,null,null,ps);
 		}
-
-		return str;
+		return countCar;
 	}
 
 	/**
-	 * Function to delete all vehicles
 	 * 
+	 * Function to delete car from table car
+	 * 
+	 * @param vehicleId
 	 * @throws VehicleManagementException
 	 */
 	@SuppressWarnings("resource")
-	public static void deleteAllVehicles() throws VehicleManagementException {
-
-		Connection con = null;
-		Statement stmt = null;
+	public static void deleteCarTable(int vehicleId)
+			throws VehicleManagementException {
+		 Connection con = null;
+		 Statement stmt = null;
+		 ResultSet rs = null;
+		
 		ConnectionUtil conUtil = new ConnectionUtil();
 		/* creates connection to db */
 		con = conUtil.getConnection();
-		String query1 = "DROP TABLE Bike";
-		String query2 = "DROP TABLE Car";
-		String query3 = "DROP TABLE Vehicle";
+
+		String query = "SELECT vehicle_id FROM Car WHERE vehicle_id = "
+				+ vehicleId;
 		try {
 			stmt = con.createStatement();
-			stmt.executeUpdate(query1);
-			stmt = con.createStatement();
-			stmt.executeUpdate(query2);
-			stmt = con.createStatement();
-			stmt.executeUpdate(query3);
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-
-		}
-		finally{
-			closeAll(con,stmt,null);
-		}
-		
-	}
-	static void closeAll(Connection con, Statement stmt,PreparedStatement ps)
-	{
-		 {
-				/* close connection */
+			/* execute query using statement */
+			rs = stmt.executeQuery(query);
+			if (rs.next() == false) {
+				System.out.println("Id doesnot exist");
+				return;
+			} else {
+				stmt = null;
+				query = "DELETE FROM Vehicle WHERE vehicle_id = " + vehicleId;
 				try {
-					if (con != null) {
-						con.close();
-					}
-					if (stmt != null) {
-						stmt.close();
-					}
-					if(ps!=null){
-						ps.close();
-					}
-
+					stmt = con.createStatement();
+					stmt.executeUpdate(query);
+					System.out.println("Car deleted");
 				} catch (SQLException e) {
-					e.printStackTrace();
+					throw new VehicleManagementException("Cannot delete car : "
+							+ e);
 				}
 			}
-	}
+		} catch (SQLException e) {
+			throw new VehicleManagementException("Cannot delete car : " + e);
+		} finally {
+			/* close connection */
+			closeAll(con,stmt,rs,null);
+		}
 
+	}
+	static void closeAll(Connection con ,Statement stmt, ResultSet rs,PreparedStatement ps)
+	{
+		try {
+			if (con != null) {
+				con.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+			if (rs != null) {
+				rs.close();
+			}
+			if(ps!=null){
+				ps.close();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
