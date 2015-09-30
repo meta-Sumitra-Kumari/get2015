@@ -78,6 +78,7 @@ public class VehicleReadMain {
 			} while (tempVar < 0);
 
 		} while (tempVar == 0);
-
+		VehicleJdbcHelper.deleteAllVehicles();
+		scan.close();
 	}
 }
