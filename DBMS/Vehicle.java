@@ -1,7 +1,7 @@
 import java.sql.Timestamp;
 
 /**
- * @author Arushi --- abstract class vehicle to store data of general vehicle
+ * @author Sumitra --- abstract class vehicle to store data of general vehicle
  *
  */
 public abstract class Vehicle {
