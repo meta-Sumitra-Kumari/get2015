@@ -1,7 +1,7 @@
 import java.sql.Timestamp;
 
 /**
- * @author Sumitra --- abstract class vehicle to store data of general vehicle
+ * @author Arushi --- abstract class vehicle to store data of general vehicle
  *
  */
 public abstract class Vehicle {
@@ -207,8 +207,11 @@ public abstract class Vehicle {
 	 * @param createdBy
 	 *            the createdBy to set
 	 */
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
+	public void setCreatedBy() {
+		if(this.model.equalsIgnoreCase("model1")||this.model.equalsIgnoreCase("model3")||this.model.equalsIgnoreCase("model5"))
+		this.createdBy = "honda";
+		else 
+			this.createdBy="maruti";
 	}
 
 }
