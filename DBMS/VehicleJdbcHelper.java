@@ -148,20 +148,20 @@ public class VehicleJdbcHelper {
 	{
 		 {
 				/* close connection */
-			try {
-				if (con != null) {
-					con.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				}
-				if(ps!=null){
-					ps.close();
-				}
+				try {
+					if (con != null) {
+						con.close();
+					}
+					if (stmt != null) {
+						stmt.close();
+					}
+					if(ps!=null){
+						ps.close();
+					}
 
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 	}
 
