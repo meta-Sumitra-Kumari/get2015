@@ -13,7 +13,7 @@ import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 
 /**
- * @author Sumitra ---Class to read data from XML file
+ * @author Arushi ---Class to read data from XML file
  *
  */
 public class StaxParser {
@@ -28,7 +28,6 @@ public class StaxParser {
 	static final String MILAGE = "milage";
 	static final String PRICE = "price";
 	static final String ROADTAX = "roadTax";
-	static final String CREATED_BY = "createdBy";
 	static final String AC = "ac";
 	static final String POWER_STEERING = "powerStering";
 	static final String ACCESSORY_KIT = "accessoryKit";
@@ -89,6 +88,7 @@ public class StaxParser {
 							.equals(MODEL)) {
 						event = eventReader.nextEvent();
 						objVehicle.setModel(event.asCharacters().getData());
+						objVehicle.setCreatedBy();
 						continue;
 					}
 
@@ -132,12 +132,12 @@ public class StaxParser {
 						continue;
 					}
 
-					if (event.asStartElement().getName().getLocalPart()
+					/*if (event.asStartElement().getName().getLocalPart()
 							.equals(CREATED_BY)) {
 						event = eventReader.nextEvent();
 						objVehicle.setCreatedBy(event.asCharacters().getData());
 						continue;
-					}
+					}*/
 
 					if (event.asStartElement().getName().getLocalPart()
 							.equals(AC)) {
