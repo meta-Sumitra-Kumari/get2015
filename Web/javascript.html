@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html >
+	<head>
+	<link rel="stylesheet" href="styles2.css" type="text/css">
+	<script src="script.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<main>
+			<header>
+				<h3>Employee Form</h3>
+			</header>
+			<form onsubmit="return validatename()" method="post" name="employeeform">
+			<div class="leftsection">
+					<div class="space">First Name:</div>
+						
+					<div class="space">Last Name:</div>
+						
+					<div class="space">Password:</div>
+						
+					<div class="space">Re-enter Password:</div>
+						
+					<div class="space">Age:</div>
+						
+					<div class="space">Select State:</div>
+						
+					<div class="space">Select City:</div>
+						
+					<div class="space">Address:</div>
+			</div>
+			<div class="rightsection">
+				<div class="space"><input type="text" name="firstname" required id="fname" pattern = "[a-zA-Z]{2,}"/></div>
+
+				<div class="space"><input type="text" name="lastname" required id="lname" pattern = "[a-zA-Z]{2,}"/></div>
+				
+				<div class="space"><input type="hidden" name="password">
+									<input type="text" required></div>
+				
+				<div class="space"><input type="hidden" name="repassword">
+									<input type="text" required></div>
+				
+				<div class="space"><input type="text" name="age" id="age" onkeypress="return CheckIsNumeric(event);"/></div>
+				
+				<div class="space"><select name="category" class="required-entry" id="category" onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value);">
+                <option value="">Select Language</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="MP">MP</option>
+                <option value="UP">UP</option>
+                <option value="Maharastra">Maharastra</option>
+				</select></div>
+				
+				<div class="space"> <script type="text/javascript" language="JavaScript">
+                document.write('<select name="subcategory" id="subcategory"><option value="">Please select framework</option></select>')
+				</script></div>
+				
+				<div class="space"><textarea rows="4" cols="50"  name="Address" required placeholder="enter text here..."></textarea></div>
+				
+				
+			
+			</div>
+			<div class="end">
+				<div class="space"><input type="checkbox" required name="terms"> I accept the <u>Terms and Conditions</u></div>
+				<div class="space"><input type="submit" value="Create" ></div>
+			</div>
+			</form>
+		</main>
+	</body>
+</html>
