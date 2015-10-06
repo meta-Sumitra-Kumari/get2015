@@ -3,18 +3,18 @@ CREATE DATABASE vehicle_management_system;
 
 USE vehicle_management_system;
 
-
-CREATE TABLE IF NOT EXISTS Vehicle
+CREATE TABLE IF NOT EXISTS Vehicle 
 (
-    vehicle_id INT AUTO_INCREMENT PRIMARY KEY,
-    make VARCHAR(20) ,
-    model VARCHAR(20),
-    engine_in_cc DOUBLE,
-    fuel_capacity DOUBLE,
-    milage DOUBLE,
-    price DOUBLE,
-    road_tax DOUBLE
-);
+	vehicle_id INT AUTO_INCREMENT PRIMARY KEY,
+	make VARCHAR(20),
+	model VARCHAR(20),
+	engine_in_cc DOUBLE,
+	fuel_capacity DOUBLE,
+	milage DOUBLE,
+	price DOUBLE,
+	road_tax DOUBLE,
+	created_by VARCHAR(20),
+	created_time TIMESTAMP DEFAULT NOW());
 
 
 CREATE TABLE IF NOT EXISTS Car
