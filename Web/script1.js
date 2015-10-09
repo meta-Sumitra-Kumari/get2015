@@ -1,4 +1,4 @@
-   var k=0;
+  var k=0;
    var df;
 window.onload=function() {
    df=document.forms[0];
@@ -27,37 +27,61 @@ function activateSubmit() {
 	}
 }
 function validate() {
+	str="";
 	if(document.getElementById("firstName").value.trim() == "") {
-		alert("First Name Is Empty");
+		str+="First Name Is Empty\n";
 		document.getElementById("firstName").style.borderColor="red";
 	} 
-	else
+	
 	if(document.getElementById("lastName").value.trim() == "") {
-		alert("Last Name Is Empty");
+		str+="Last Name Is Empty\n";
 		document.getElementById("lastName").style.borderColor="red";
 	}
-	else
+
 		
-			if(document.getElementById("passwd").value.length < 8 ){	
-		alert("Password Length should be greater than 8");
+		if(document.getElementById("passwd").value.length < 8 ){	
+		str+="Password Length should be greater than 8\n";
 		document.getElementById("passwda").style.borderColor="red";
 			
 		
 		
 			}
-	else	
+		if(document.getElementById("confirmPasswd").value.length < 8 ){	
+		str+="Password Length should be greater than 8\n";
+		document.getElementById("passwdb").style.borderColor="red";
+			
+		
+		
+			}
+			if(document.getElementById("age").value == "") {
+		str+="Age Is Empty\n";
+		document.getElementById("age").style.borderColor="red";
+	}
+
+			
 	if(document.getElementById("passwd").value != document.getElementById("confirmPasswd").value) {
 				document.getElementById("passwda").style.borderColor="red";
 				document.getElementById("passwdb").style.borderColor="red";
-			alert("Password & Confirm Password mismatch!!");
+			str+="Password & Confirm Password mismatch!!\n";
 				}
 	
 	
-	else
+	
 	if(document.getElementById("state") == "" || document.getElementById("city") == "" ) {
-		alert("State or City are not Selected!!");
+		str+="State or City are not Selected!!\n";
+		document.getElementById("state").style.borderColor="red";
+		document.getElementById("city").style.borderColor="red";
 	}
-	else {
+	if(document.getElementById("addressLine1").value.trim() == "") {
+		str+="Address Is Empty\n";
+		document.getElementById("addressLine1").style.borderColor="red";
+	}
+
+	if(str.length>0)
+	{
+		alert(str);
+	}
+	{
 		alert(document.getElementById("textBox").value);
 	}
 	
