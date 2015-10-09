@@ -93,7 +93,7 @@ function checkMax(max,min){
 	else if(y<=0 || y>10){
 		return("Maximum value must be between 0 and 10\n");
 	}
-    else if(y<min.value){
+    else if(y<=min.value){
 		return("Maximum must be greater than minimum\n");
 	}
 	else
