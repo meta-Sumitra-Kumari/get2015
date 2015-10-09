@@ -29,21 +29,31 @@ function activateSubmit() {
 function validate() {
 	if(document.getElementById("firstName").value.trim() == "") {
 		alert("First Name Is Empty");
+		document.getElementById("firstName").style.borderColor="red";
 	} 
-	
+	else
 	if(document.getElementById("lastName").value.trim() == "") {
 		alert("Last Name Is Empty");
+		document.getElementById("lastName").style.borderColor="red";
 	}
-	
-	if(document.getElementById("passwd").value.length < 8 ){
+	else
+		
+			if(document.getElementById("passwd").value.length < 8 ){	
 		alert("Password Length should be greater than 8");
-	}
-	
+		document.getElementById("passwda").style.borderColor="red";
+			
+		
+		
+			}
+	else	
 	if(document.getElementById("passwd").value != document.getElementById("confirmPasswd").value) {
-		alert(document.getElementById("passwd").value);
-		alert(document.getElementById("confirmPasswd").value);
-		alert("Password & Confirm Password mismatch!!");
-	}
+				document.getElementById("passwda").style.borderColor="red";
+				document.getElementById("passwdb").style.borderColor="red";
+			alert("Password & Confirm Password mismatch!!");
+				}
+	
+	
+	else
 	if(document.getElementById("state") == "" || document.getElementById("city") == "" ) {
 		alert("State or City are not Selected!!");
 	}
@@ -53,42 +63,34 @@ function validate() {
 	
 }
 function dynamicdropdown(listindex)
-            {
-                document.getElementById("city").length = 0;
+            {	write=document.getElementById("city");
+                write.length = 0;
+				var raj=new Array("Jaipur","Ajmer","Chittorgarh","Jodhpur","Udaipur");
+				var mp=new Array("Indor","Bhopal","Gwaliar","Ujjain","Jabalpur");
+				var up=new Array("Kanpur","Lucknow","Allahbad","Jhasi","Agra");
+				var maharashtra=new Array("Mumbai","Pune","Thane","Nagpur","Nashik");
                 switch (listindex)
                 {
                     case "Rajasthan" :
-                        document.getElementById("city").options[0]=new Option("Please select city","");
-                        document.getElementById("city").options[1]=new Option("Jaipur","Jaipur");
-                        document.getElementById("city").options[2]=new Option("Ajmer","Ajmer");
-                        document.getElementById("city").options[3]=new Option("Chittorgarh","Chittorgarh");
-                        document.getElementById("city").options[4]=new Option("Jodhpur","Jodhpur");
-                        document.getElementById("city").options[5]=new Option("Udaipur","Udaipur");
-                        break;
+						for(i=0;i<raj.length;i++){
+							 write.options[i]=new Option(raj[i],raj[i]);
+						}
+						break;
                     
                     case "MP" :
-                        document.getElementById("city").options[0]=new Option("Please select city","");
-                        document.getElementById("city").options[1]=new Option("Indor","Indor");
-                        document.getElementById("city").options[2]=new Option("Bhopal","Bhopal");
-						 document.getElementById("city").options[3]=new Option("Jabalpur","Jabalpur");
-						  document.getElementById("city").options[4]=new Option("Gwaliar","Gwaliar");
-						   document.getElementById("city").options[5]=new Option("Ujjain","Ujjain");
+                       for(i=0;i<raj.length;i++){
+							 write.options[i]=new Option(mp[i],mp[i]);
+						}
                         break;
                     case "UP" :
-                        document.getElementById("city").options[0]=new Option("Please select city","");
-                        document.getElementById("city").options[1]=new Option("Kanpur","Kanpur");
-                        document.getElementById("city").options[2]=new Option("Lucknow","Lucknow");
-                        document.getElementById("city").options[3]=new Option("Agra","Agra");
-                        document.getElementById("city").options[4]=new Option("Allahbad","Allahbad");
-                        document.getElementById("city").options[5]=new Option("Jhasi","Jhasi");
+                       for(i=0;i<raj.length;i++){
+							 write.options[i]=new Option(up[i],up[i]);
+						}
                         break;
                     case "Maharastra" :
-                        document.getElementById("city").options[0]=new Option("Please select city","");
-                        document.getElementById("city").options[1]=new Option("Mumbai","Mumbai");
-						document.getElementById("city").options[2]=new Option("Pune","Pune");
-						document.getElementById("city").options[3]=new Option("Thane","Thane");
-						document.getElementById("city").options[4]=new Option("Nagpur","Nagpur");
-						document.getElementById("city").options[5]=new Option("Nashik","Nashik");
+                   for(i=0;i<raj.length;i++){
+							 write.options[i]=new Option(maharashtra[i],maharashtra[i]);
+						}
                         break;
                 }
                 return true;
