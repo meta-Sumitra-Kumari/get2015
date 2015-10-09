@@ -1,12 +1,27 @@
 function checkInteger(){
-var c=document.getElementById("item").value;
-if(isNaN(c))
-   alert("Enter a integer value");
-else if(c=="" || c==0)
-	alert("Enter a integer value");
+var c=document.getElementById("item");
+if(isNaN(c.value))
+{
+	c.style.borderColor="red";
+	c.value="";
+	 c.placeholder="Enter a integer value";
+}
+  
+else if(c.value=="" )
+{
+	c.style.borderColor="red";
+	c.value="";
+	c.placeholder="Enter a  value";
+}
+	else if( c.value==0)
+	{
+		c.style.borderColor="red";
+	c.value="";
+	c.placeholder="Zero is not allowed";
+	}
 else
 {
-	var str1=showdata(c);
+	var str1=showdata(c.value);
 	document.getElementById("div2").innerHTML=str1;
 }
 return true;
@@ -35,14 +50,17 @@ function validate(){
 	
 	for(var i=0;i<rows;i++){
 		str+=checkName(name[i])+checkMin(min[i])+checkMax(max[i],min[i]);
-		if(str.length>0){
-			alert(str);
-			return false;
+		
+		
+	}
+	if(str.length>0){
+			
 		}
 		else
-			continue;
-	}
-	document.getElementById("div3").innerHTML="<h3>Coloured Table</h3>"+createTable(name,min,max,rows);
+		{
+			document.getElementById("div3").innerHTML="<h3>Coloured Table</h3>"+createTable(name,min,max,rows);
+		}
+	
 }
 
 function createTable(name,min,max,rows){
@@ -65,10 +83,17 @@ function createTable(name,min,max,rows){
 function checkName(name){
 	var letters = /^[A-Za-z]+$/; 
 	if(name.value==""){
+		name.style.borderColor="red";
 	return("Empty name value not allowed\n");
 	}
 	else if(!name.value.match(letters))
-			return("Enter alphabets only\n");
+	{
+		name.style.borderColor="red";
+		name.value="";
+		name.placeholder="enter alphabets only";
+		return("Enter alphabets only\n");
+	}
+			
 	else
 		return "";
 }
@@ -76,9 +101,13 @@ function checkName(name){
 function checkMin(min){
 	var x=min.value;
 	if(isNaN(x)){
+		min.style.borderColor="red";
 		return("Enter a valid integer Number\n");
 	}
-	else if(x<=0 || x>=10) {
+	else if(x<=0 || x>10) {
+		min.style.borderColor="red";
+		min.value="";
+		min.placeholder="Minimum value must be between 0 and 10";
 	return("Minimum value must be between 0 and 10\n");
 	}
 	else
@@ -88,12 +117,19 @@ function checkMin(min){
 function checkMax(max,min){
 	var y=max.value;
 	if(isNaN(y)){
+		max.style.borderColor="red";
 		return("Enter a valid integer Number\n");
 	}
 	else if(y<=0 || y>10){
+		max.style.borderColor="red";
+		max.value="";
+		max.placeholder="Maximum value must be between 0 and 10";
 		return("Maximum value must be between 0 and 10\n");
 	}
     else if(y<=min.value){
+		max.style.borderColor="red";
+		max.value="";
+		max.placeholder="Maximum must be greater than minimum";
 		return("Maximum must be greater than minimum\n");
 	}
 	else
