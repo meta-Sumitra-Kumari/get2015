@@ -21,6 +21,7 @@ else if(c.value=="" )
 	}
 else
 {
+	c.style.border="1px black solid";
 	var str1=showdata(c.value);
 	document.getElementById("div2").innerHTML=str1;
 }
@@ -95,7 +96,12 @@ function checkName(name){
 	}
 			
 	else
+	{
+		name.style.border="1px black solid";
 		return "";
+	}
+		
+		
 }
 
 function checkMin(min){
@@ -111,7 +117,11 @@ function checkMin(min){
 	return("Minimum value must be between 0 and 10\n");
 	}
 	else
+	{
+		min.style.border="1px black solid";
 		return "";
+	}
+		
 }
 
 function checkMax(max,min){
@@ -133,5 +143,9 @@ function checkMax(max,min){
 		return("Maximum must be greater than minimum\n");
 	}
 	else
+	{
+		max.style.border="1px black solid";
 		return "";
 }
+	}
+		
