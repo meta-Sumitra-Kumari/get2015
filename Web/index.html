@@ -3,29 +3,29 @@
 	<title>Employee Form</title>
 </head>
 <body>
-	<form onSubmit="validate()"method="post">
+	<form method="post" >
 		<table>
 			<tr>
 				<td> First Name : </td>
-				<td><input type="text" id="firstName"></td>
+				<td><input type="text" required id="firstName"></td>
 			</tr>
 			<tr>
 				<td> Last Name : </td>
-				<td><input type="text" id="lastName"></td>
+				<td><input type="text" required id="lastName"></td>
 			</tr>
 			<tr>
 				<td> Password :</td>
 				<td><input type="hidden" id="passwd">
-				<input type="text" ></td>
+				<input type="text" required id="passwda"></td>
 			</tr>
 			<tr>
 				<td>Confirm Password :</td>
-				<td><input type="hidden" id="confirmPasswd">
-				<input type="text" ></td>
+				<td><input type="hidden" required id="confirmPasswd">
+				<input type="text" required id="passwdb"></td>
 			</tr>
 			<tr>
 				<td> Age :</td>
-				<td><input type="number" id="age"  min="12" step="any"></td>
+				<td><input type="number" id="age" required min="12" max="100" step="any"></td>
 			</tr>
 			<tr>
 				<td>Select State :</td>
@@ -49,13 +49,13 @@
 			</tr>
 			<tr>
 				<td> Address :	</td>
-				<td><textarea id="addressLine1" rows="3"></textarea></td>
+				<td><textarea id="addressLine1" required rows="3"></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2"> <input type="checkbox" id="acceptCondition" onChange="activateSubmit()"><label for="acceptCondition"> I Accept all <a href="#">Terms & Conditions</a></label></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="Submit" value="Create!!" id="submitButton" disabled></td>
+				<td colspan="2"><input type="button" value="Create!!" id="submitButton" onClick="validate()" disabled></td>
 			</tr>
 	</form>
 </body>
