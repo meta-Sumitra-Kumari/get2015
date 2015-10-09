@@ -32,39 +32,54 @@ function validate() {
 		str+="First Name Is Empty\n";
 		document.getElementById("firstName").style.borderColor="red";
 	} 
-	
+	else{
+		document.getElementById("firstName").style.border="1px black solid";
+		
+	}
 	if(document.getElementById("lastName").value.trim() == "") {
 		str+="Last Name Is Empty\n";
 		document.getElementById("lastName").style.borderColor="red";
 	}
-
+else{
+		document.getElementById("lastName").style.border="1px black solid";
+		
+	}
 		
 		if(document.getElementById("passwd").value.length < 8 ){	
 		str+="Password Length should be greater than 8\n";
 		document.getElementById("passwda").style.borderColor="red";
-			
+		}
+		else{
+		document.getElementById("passwda").style.border="1px black solid";
 		
-		
-			}
+	}
 		if(document.getElementById("confirmPasswd").value.length < 8 ){	
 		str+="Password Length should be greater than 8\n";
 		document.getElementById("passwdb").style.borderColor="red";
-			
+		}
+		else{
+		document.getElementById("passwdb").style.border="1px black solid";
 		
-		
-			}
+	}
 			if(document.getElementById("age").value == "") {
 		str+="Age Is Empty\n";
 		document.getElementById("age").style.borderColor="red";
 	}
-
+	else{
+		document.getElementById("age").style.border="1px black solid";
+		
+	}
 			
 	if(document.getElementById("passwd").value != document.getElementById("confirmPasswd").value) {
 				document.getElementById("passwda").style.borderColor="red";
 				document.getElementById("passwdb").style.borderColor="red";
 			str+="Password & Confirm Password mismatch!!\n";
 				}
-	
+	else{
+		document.getElementById("passwda").style.border="1px black solid";
+		document.getElementById("passwdb").style.border="1px black solid";
+		
+	}
 	
 	
 	if(document.getElementById("state") == "" || document.getElementById("city") == "" ) {
@@ -75,6 +90,9 @@ function validate() {
 	if(document.getElementById("addressLine1").value.trim() == "") {
 		str+="Address Is Empty\n";
 		document.getElementById("addressLine1").style.borderColor="red";
+	}
+	else{
+		document.getElementById("addressLine1").style.border="1px black solid";
 	}
 
 	if(str.length>0)
