@@ -58,7 +58,7 @@
 			</br>
 			
 			<label> Age:</label>
-			<input type=number required min=12 max=40 value="<%=age%>" name="age"/>
+			<input type=number min=12 max=30 value="<%=age%>" required name="age"/>
 			
 			</br>
 			
