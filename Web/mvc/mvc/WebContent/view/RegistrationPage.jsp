@@ -53,12 +53,12 @@
 			<br>
 			
 			<label> Name:</label>
-			<input type=text value="<%=name%>" name="employeeName" />
+			<input type=text value="<%=name%>" required name="employeeName" />
 			
 			</br>
 			
 			<label> Age:</label>
-			<input type=text value="<%=age%>" name="age"/>
+			<input type=number required min=12 max=40 value="<%=age%>" name="age"/>
 			
 			</br>
 			
