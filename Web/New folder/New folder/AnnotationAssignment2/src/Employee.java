@@ -1,18 +1,27 @@
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * @author  Sumitra ---Pojo class for employee
  *
  */
 public class Employee {
-	String employeeName;
-	int employee_id;
-	String email_id;
-	String date_Of_Birth;
-	String date_Of_Joining;
-	int ctcPerAnnum;
+	@JsonIgnore
+	private String employeeName;
+	@JsonIgnore
+	private int employeeId;
+	@JsonIgnore
+	private String emailId;
+	private String dateOfBirth;
+	@JsonIgnore
+	private String dateOfJoining;
+	@JsonIgnore
+	private double ctcPerAnnum;
 
 	/**
 	 * @return the employeeName
 	 */
+	@JsonProperty
 	public String getEmployeeName() {
 		return employeeName;
 	}
@@ -21,102 +30,84 @@ public class Employee {
 	 * @param employeeName
 	 *            the employeeName to set
 	 */
+	@JsonProperty
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
 	}
 
 	/**
-	 * Parameterized Constructor
-	 * 
-	 * @param employeeName
-	 * @param employee_id
-	 * @param email_id
-	 * @param date_Of_Joining
+	 * @return the employeeId
 	 */
-	public Employee(String employeeName, int employee_id, String email_id,
-			String date_Of_Joining) {
-		super();
-		this.employeeName = employeeName;
-		this.employee_id = employee_id;
-		this.email_id = email_id;
-		this.date_Of_Joining = date_Of_Joining;
-
+	@JsonProperty
+	public int getEmployeeId() {
+		return employeeId;
 	}
 
 	/**
-	 * Default constructor
+	 * @param employeeId
+	 *            the employeeId to set
 	 */
-	public Employee() {
-		this.ctcPerAnnum = 18000;
-		this.date_Of_Birth = "";
-		this.date_Of_Joining = "";
-
+	@JsonProperty
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	/**
-	 * @return the employee_id
+	 * @return the emailId
 	 */
-	public int getEmployee_id() {
-		return employee_id;
+	@JsonProperty
+	public String getEmailId() {
+		return emailId;
 	}
 
 	/**
-	 * @param employee_id
-	 *            the employee_id to set
+	 * @param emailId
+	 *            the emailId to set
 	 */
-	public void setEmployee_id(int employee_id) {
-		this.employee_id = employee_id;
+	@JsonIgnore
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
 	/**
-	 * @return the email_id
+	 * @return the dateOfBirth
 	 */
-	public String getEmail_id() {
-		return email_id;
+	@JsonIgnore
+	public String getDateOfBirth() {
+		return dateOfBirth;
 	}
 
 	/**
-	 * @param email_id
-	 *            the email_id to set
+	 * @param dateOfBirth
+	 *            the dateOfBirth to set
 	 */
-	public void setEmail_id(String email_id) {
-		this.email_id = email_id;
+	@JsonProperty
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	/**
-	 * @return the date_Of_Birth
+	 * @return the dateOfJoining
 	 */
-	public String getDate_Of_Birth() {
-		return date_Of_Birth;
+	@JsonProperty
+	public String getDateOfJoining() {
+		return dateOfJoining;
 	}
 
 	/**
-	 * @param date_Of_Birth
-	 *            the date_Of_Birth to set
+	 * @param dateOfJoining
+	 *            the dateOfJoining to set
 	 */
-	public void setDate_Of_Birth(String date_Of_Birth) {
-		this.date_Of_Birth = date_Of_Birth;
-	}
-
-	/**
-	 * @return the date_Of_Joining
-	 */
-	public String getDate_Of_Joining() {
-		return date_Of_Joining;
-	}
-
-	/**
-	 * @param date_Of_Joining
-	 *            the date_Of_Joining to set
-	 */
-	public void setDate_Of_Joining(String date_Of_Joining) {
-		this.date_Of_Joining = date_Of_Joining;
+	@JsonIgnore
+	public void setDateOfJoining(String dateOfJoining) {
+		this.dateOfJoining = dateOfJoining;
 	}
 
 	/**
 	 * @return the ctcPerAnnum
 	 */
-	public int getCtcPerAnnum() {
+	@JsonIgnore
+	public double getCtcPerAnnum() {
 		return ctcPerAnnum;
 	}
 
@@ -124,8 +115,15 @@ public class Employee {
 	 * @param ctcPerAnnum
 	 *            the ctcPerAnnum to set
 	 */
-	public void setCtcPerAnnum(int ctcPerAnnum) {
+	@JsonIgnore
+	public void setCtcPerAnnum(double ctcPerAnnum) {
 		this.ctcPerAnnum = ctcPerAnnum;
 	}
-
+	@Override
+	public String toString() {
+		return "Employee [employeeId=" + employeeId + ", emailId=" + emailId
+				+ ", dateOfBirth=" + dateOfBirth + ", dateOfJoining="
+				+ dateOfJoining + ", ctcPerAnnum=" + ctcPerAnnum
+				+ ", employeeName=" + employeeName + "]";
+	}
 }
