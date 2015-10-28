@@ -15,11 +15,14 @@ public class FactoryMain {
 		String role;
 		char choice;
 		// getting instance of company
-		Company company = Company.getInstance();
+		
 		Scanner scanner = new Scanner(System.in);
 		do {
-			System.out.println("1 ->To add developer");
-			System.out.println("2 ->to print list");
+			System.out.println("1 ->To add Frontend Engineer");
+			System.out.println("2 ->to print list of Front end Engineer");
+
+			System.out.println("3 ->To add backend Engineer");
+			System.out.println("4 ->to print list of back End Engineer"); 
 
 			int doChoice;
 			do {// Validation
@@ -37,14 +40,25 @@ public class FactoryMain {
 				// adding data in list
 				System.out.println("Enter name---");
 				name = scanner.next();
-				System.out.println("enter role---");
-				role = scanner.next();
-				company.addDeveloper(name, role);
+				FrontHandEngineer frontengineer = FrontHandEngineer.getInstance();
+				frontengineer.addFrontEndEngineer(name);
 				break;
 			case 2:
 				// showing list
-				company.showList();
+				FrontHandEngineer engineerList = FrontHandEngineer.getInstance();
+				engineerList.showList();
 				break;
+			case 3:
+				System.out.println("Enter name---");
+				name = scanner.next();
+				BackHandEngineer backengineer = BackHandEngineer.getInstance();
+				backengineer.addBackEndEngineer(name);
+				break;
+			case 4:
+				BackHandEngineer backEngineerList = BackHandEngineer.getInstance();
+				backEngineerList.showList();
+				break;
+				
 			default:
 				System.out.println("enter correct choice");
 				break;
