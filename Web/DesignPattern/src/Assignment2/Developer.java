@@ -1,58 +1,55 @@
 package Assignment2;
 
-/**
- * @author Sumitra
- * --Pojo class for Developer with protected constructor
- *
- */
-public class Developer {
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
+public class BackHandEngineer implements Engineer {
+
+	
 	String name;
 	String role;
-
-	/**
-	 * @return the name
-	 */
+	 private static List<BackHandEngineer> EngineerListBack= new ArrayList<BackHandEngineer>();
 	public String getName() {
 		return name;
 	}
-
-	/**
-	 * @param name
-	 *            the name to set
-	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	/**
-	 * @return the role
-	 */
 	public String getRole() {
 		return role;
 	}
-
-	protected Developer() {
-
+	public void setRole() {
+		this.role = "BackEndEngineer";
 	}
-
-	/**
-	 * @param role
-	 *            the role to set
-	 */
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return "Name -> " + name + "\nRole -> " + role + "\n";
+		
+		return "Name -> " + name + "\nRole -> " + role + "\n";    
 	}
+	private BackHandEngineer() {
 
+	}
+	private static BackHandEngineer back_end=new BackHandEngineer();
+	public static BackHandEngineer getInstance(){
+		return back_end;
+	}
+	public void addBackEndEngineer(String name) {
+		BackHandEngineer engineer=new BackHandEngineer();
+		engineer.setName(name);
+		engineer.setRole();
+		EngineerListBack.add(engineer);
+
+	}
+	public void showList() {
+		if(EngineerListBack.isEmpty()){
+			System.out.println("List is empty");
+		}
+		else{
+		Iterator<BackHandEngineer> iterator = EngineerListBack.iterator();
+		while (iterator.hasNext()) {
+			System.out.println(iterator.next().toString());
+		}
+	}}
+	
 }
