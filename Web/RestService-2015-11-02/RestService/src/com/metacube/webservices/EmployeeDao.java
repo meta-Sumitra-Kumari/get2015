@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Arushi 
+ * @author Sumitra
  * --class for establishing connection through database
  * 
  */
@@ -37,7 +37,7 @@ public class EmployeeDao {
 	}
 
 	/**
-	 * Creating and using database and creating car table here Constructor
+	 * Creating and using database and creating employee table here Constructor
 	 * connection: Connection of database
 	 */
 	public EmployeeDao(Connection connection) {
@@ -45,11 +45,11 @@ public class EmployeeDao {
 		Statement statement = null;
 		try {
 			statement = connection.createStatement();
-			// Creating database and creating table user
+			
 			statement.execute(CREATE_Employee_DATABASE_QUERY);
-			// Use query For car portal Database
+			
 			useEmployeeDatabase(connection);
-			// create car table
+			
 			statement.execute(CREATE_Employee);
 
 		} catch (SQLException e) {
@@ -59,7 +59,7 @@ public class EmployeeDao {
 	}
 
 	/**
-	 * To use car portal Database for further query
+	 * To use employee Database for further query
 	 * 
 	 * @param connection
 	 *            :connection
@@ -68,7 +68,7 @@ public class EmployeeDao {
 		Statement statement = null;
 		try {
 			statement = connection.createStatement();
-			// use query for carportal database
+			
 			statement.execute(USE_Employee_DATABASE_QUERY);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -91,7 +91,7 @@ public class EmployeeDao {
 		PreparedStatement preparedStatement = null;
 
 		try {
-			// inserting user into user table
+			// inserting user intoemployee table
 			preparedStatement = connection
 					.prepareStatement(INSERT_Employee_QUERY);
 			preparedStatement.setString(1, employee.getName());
@@ -115,7 +115,7 @@ public class EmployeeDao {
 	 */
 	public static List<Employee> selectListOfEmployee(Connection connection) {
 
-		List<Employee> employeeList = new ArrayList<Employee>();// List of car
+		List<Employee> employeeList = new ArrayList<Employee>();// List of employee
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
@@ -123,7 +123,7 @@ public class EmployeeDao {
 					.prepareStatement(SELECT_Employee_QUERY);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				// setting car in list
+				// setting employee in list
 				employeeList.add(new Employee(resultSet.getInt(2), resultSet
 						.getString(1), resultSet.getString(4), resultSet
 						.getDouble(3)));
@@ -155,7 +155,7 @@ public class EmployeeDao {
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
 
-				// setting car in list
+				// setting employee in list
 				employee = new Employee(resultSet.getInt(2),
 						resultSet.getString(1), resultSet.getString(4),
 						resultSet.getDouble(3));
@@ -175,7 +175,7 @@ public class EmployeeDao {
 	public static List<Employee> selectListOfEmployeeByName(
 			Connection connection, String name) {
 
-		List<Employee> employeeList = new ArrayList<Employee>();// List of car
+		List<Employee> employeeList = new ArrayList<Employee>();// List of employee
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		try {
@@ -186,7 +186,7 @@ public class EmployeeDao {
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 
-				// setting car in list
+				// setting employee in list
 				employeeList.add(new Employee(resultSet.getInt(2), resultSet
 						.getString(1), resultSet.getString(4), resultSet
 						.getDouble(3)));
