@@ -1,13 +1,13 @@
 function show(){
 	
-		var text=document.getElementById("text_area");
-		text.innerHTML="This is Text";
+		document.getElementById("text_area").style.display='inline';
+		
 		document.getElementById("show_hide").value="hide";
 		document.getElementById("show_hide").onclick=hide;
 }
 function hide(){
-		var text=document.getElementById("text_area");
-		text.innerHTML="";
+		document.getElementById("text_area").style.display='none';
+		
 		document.getElementById("show_hide").value="show";
 		document.getElementById("show_hide").onclick=show;
 }
