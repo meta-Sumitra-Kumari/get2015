@@ -1,6 +1,9 @@
-package Assignment2;
-
 public interface Engineer {
- String name="";
- String role="";
+	void setName(String name);
+
+	void setRole();
+
+	String getName();
+
+	String getRole();
 }
