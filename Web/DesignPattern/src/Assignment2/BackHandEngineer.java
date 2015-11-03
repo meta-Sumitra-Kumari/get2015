@@ -1,55 +1,43 @@
-package Assignment2;
+/**
+ * @author Sumitra this class is backEndEngineer and implementing interface
+ *         engineer and defining all the method and setting role of engineer as
+ *         backendengineer
+ */
+public class BackEndEngineer implements Engineer {
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-public class BackHandEngineer implements Engineer {
-
-	
 	String name;
 	String role;
-	 private static List<BackHandEngineer> EngineerListBack= new ArrayList<BackHandEngineer>();
+
+	/**
+	 * return name of engineer
+	 */
 	public String getName() {
+
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
+	/**
+	 * return role of engineer
+	 */
 	public String getRole() {
+
 		return role;
 	}
+
+	/**
+	 * set name of engineer
+	 */
+	public void setName(String name) {
+		this.name = name;
+
+	}
+
+	/**
+	 * set role of engineer as backendengineer
+	 */
 	public void setRole() {
-		this.role = "BackEndEngineer";
-	}
-	@Override
-	public String toString() {
-		
-		return "Name -> " + name + "\nRole -> " + role + "\n";    
-	}
-	private BackHandEngineer() {
+		this.role = Role.BackEndEngineer.toString();
 
 	}
-	private static BackHandEngineer back_end=new BackHandEngineer();
-	public static BackHandEngineer getInstance(){
-		return back_end;
-	}
-	public void addBackEndEngineer(String name) {
-		BackHandEngineer engineer=new BackHandEngineer();
-		engineer.setName(name);
-		engineer.setRole();
-		EngineerListBack.add(engineer);
 
-	}
-	public void showList() {
-		if(EngineerListBack.isEmpty()){
-			System.out.println("List is empty");
-		}
-		else{
-		Iterator<BackHandEngineer> iterator = EngineerListBack.iterator();
-		while (iterator.hasNext()) {
-			System.out.println(iterator.next().toString());
-		}
-	}}
-	
 }
