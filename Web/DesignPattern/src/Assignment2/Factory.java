@@ -61,42 +61,40 @@ public class Factory {
 				break;
 			case 2:
 				// to print the list of front end engineer
-				List<Engineer> engineerList = company.getList();
+				List<Engineer> engineerList = company.getFrontEndEngineer();
 				Iterator<Engineer> itr = engineerList.iterator();
 				int i = 1;
 				while (itr.hasNext()) {
 					Engineer engineer2 = itr.next();
-					if (engineer2.getRole().equalsIgnoreCase(
-							Role.FrontEndEngineer.toString())) {
+					
 						System.out.println("Id ->" + i++);
 						System.out.println("Name ->" + engineer2.getName());
 						System.out.println("Role ->" + engineer2.getRole());
 						System.out.println("--------------");
-					}
+					
 				}
 				// if no front end engineer is available
-				if (i == 1) {
+				if (engineerList.isEmpty()) {
 					System.out.println("No FrontEndEngineer Available");
 					System.out.println("----------");
 				}
 				break;
 			case 3:
 				// to print the list of back end engineer
-				List<Engineer> engineerList1 = company.getList();
+				List<Engineer> engineerList1 = company.getBackEndEngineer();
 				Iterator<Engineer> itr1 = engineerList1.iterator();
 				int id = 1;
 				while (itr1.hasNext()) {
 					Engineer engineer2 = itr1.next();
-					if (engineer2.getRole().equalsIgnoreCase(
-							Role.BackEndEngineer.toString())) {
+					
 						System.out.println("ID ->" + id++);
 						System.out.println("Name ->" + engineer2.getName());
 						System.out.println("Role ->" + engineer2.getRole());
 						System.out.println("-------------");
-					}
+					
 				}
 				// if no back end engineer is available
-				if (id == 1) {
+				if (engineerList1.isEmpty()) {
 					System.out.println("No BackEndEngineer Available");
 					System.out.println("--------------");
 				}
