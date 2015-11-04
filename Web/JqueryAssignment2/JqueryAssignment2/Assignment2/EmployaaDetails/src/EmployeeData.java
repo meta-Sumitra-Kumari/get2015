@@ -35,7 +35,7 @@ public class EmployeeData extends HttpServlet {
 		String detail = "";
 		switch(empName)
 		{
-		case "Priyamvada": detail="Name: Sumitra Age:22 Dob:02-06-1993  Address:Udaipur";break;
+		case "Sumitra": detail="Name: Sumitra Age:22 Dob:02-06-1993  Address:Udaipur";break;
 		case "Anshita": detail="Name: Anshita Arya Age:22 Dob:19-09-1992  Address:Bihar";break;
 		case "Deepali": detail="Name: Deepali Baldi Age:22 Dob:19-09-1992  Address:Neemuch";break;
 		case "Arushi": detail="Name: Arushi Jain Age:22 Dob:19-09-1994  Address:Jhotwara";break;
